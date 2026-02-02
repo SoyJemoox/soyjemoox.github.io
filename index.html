@@ -3,17 +3,154 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mi Web</title>
+  <title>Dev Repository | Código & Desarrollo</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <!-- Canvas para partículas binarias -->
+  <canvas id="particles"></canvas>
 
-  <main class="container">
-    <h1>Hola 👋</h1>
-    <p>Mi web está hecha con GitHub Pages</p>
-    <button id="btn">Haz clic</button>
-    <p id="msg"></p>
-  </main>
+  <!-- Botón flotante de WhatsApp -->
+  <a href="https://wa.me/573022407069" target="_blank" class="whatsapp-btn" title="Contáctame por WhatsApp">
+    <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+    </svg>
+  </a>
+
+  <div class="container">
+    <!-- Header -->
+    <header>
+      <h1>💻 Dev Repository</h1>
+      <p>Proyectos de Programación & Desarrollo Full Stack</p>
+    </header>
+
+    <!-- Sección de Habilidades -->
+    <section class="skills-section">
+      <h2>🚀 Stack Tecnológico</h2>
+      <div class="skills-grid">
+        <div class="skill-item">
+          <span class="skill-icon">🌐</span>
+          <h3>Frontend</h3>
+          <p>HTML5, CSS3, JavaScript, React</p>
+        </div>
+        <div class="skill-item">
+          <span class="skill-icon">⚙️</span>
+          <h3>Backend</h3>
+          <p>Node.js, Python, PHP, Java</p>
+        </div>
+        <div class="skill-item">
+          <span class="skill-icon">💾</span>
+          <h3>Database</h3>
+          <p>MySQL, MongoDB, PostgreSQL</p>
+        </div>
+        <div class="skill-item">
+          <span class="skill-icon">🔧</span>
+          <h3>Tools</h3>
+          <p>Git, Docker, VS Code, Linux</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Grid de Proyectos -->
+    <section class="projects-section">
+      <h2>📁 Proyectos Destacados</h2>
+      <div class="projects-grid">
+        
+        <div class="project-card">
+          <h3>🎮 Sistema de Gestión</h3>
+          <p>Aplicación web completa para administración de recursos con panel de control interactivo y dashboard en tiempo real.</p>
+          <div class="tech-tags">
+            <span class="tag">React</span>
+            <span class="tag">Node.js</span>
+            <span class="tag">MongoDB</span>
+          </div>
+          <a href="#" class="project-link">Ver Proyecto →</a>
+        </div>
+
+        <div class="project-card">
+          <h3>🛒 E-Commerce Platform</h3>
+          <p>Plataforma de comercio electrónico con carrito de compras, pasarela de pagos y gestión de inventario.</p>
+          <div class="tech-tags">
+            <span class="tag">Vue.js</span>
+            <span class="tag">Express</span>
+            <span class="tag">PostgreSQL</span>
+          </div>
+          <a href="#" class="project-link">Ver Proyecto →</a>
+        </div>
+
+        <div class="project-card">
+          <h3>📱 App Móvil</h3>
+          <p>Aplicación móvil multiplataforma con funcionalidades offline y sincronización en la nube.</p>
+          <div class="tech-tags">
+            <span class="tag">React Native</span>
+            <span class="tag">Firebase</span>
+            <span class="tag">Redux</span>
+          </div>
+          <a href="#" class="project-link">Ver Proyecto →</a>
+        </div>
+
+        <div class="project-card">
+          <h3>🤖 Bot Automatización</h3>
+          <p>Bot inteligente para automatización de tareas y procesamiento de datos con machine learning.</p>
+          <div class="tech-tags">
+            <span class="tag">Python</span>
+            <span class="tag">TensorFlow</span>
+            <span class="tag">API REST</span>
+          </div>
+          <a href="#" class="project-link">Ver Proyecto →</a>
+        </div>
+
+        <div class="project-card">
+          <h3>🔐 Sistema de Autenticación</h3>
+          <p>Sistema robusto de autenticación con JWT, roles de usuario y verificación en dos pasos.</p>
+          <div class="tech-tags">
+            <span class="tag">Node.js</span>
+            <span class="tag">JWT</span>
+            <span class="tag">MySQL</span>
+          </div>
+          <a href="#" class="project-link">Ver Proyecto →</a>
+        </div>
+
+        <div class="project-card">
+          <h3>📊 Dashboard Analytics</h3>
+          <p>Panel de análisis de datos con gráficos interactivos y reportes en tiempo real para toma de decisiones.</p>
+          <div class="tech-tags">
+            <span class="tag">Angular</span>
+            <span class="tag">D3.js</span>
+            <span class="tag">WebSocket</span>
+          </div>
+          <a href="#" class="project-link">Ver Proyecto →</a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Sección de Estadísticas -->
+    <section class="stats-section">
+      <div class="stat-item">
+        <div class="stat-number" data-target="50">0</div>
+        <div class="stat-label">Proyectos Completados</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number" data-target="15000">0</div>
+        <div class="stat-label">Líneas de Código</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number" data-target="25">0</div>
+        <div class="stat-label">Tecnologías Dominadas</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number" data-target="100">0</div>
+        <div class="stat-label">% Satisfacción</div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <p>💚 Hecho con pasión por la programación | 2025</p>
+      <p>¿Tienes un proyecto en mente? <a href="https://wa.me/573022407069" target="_blank" class="footer-link">¡Hablemos!</a></p>
+    </footer>
+  </div>
 
   <script src="script.js"></script>
 </body>
