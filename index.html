@@ -3,8 +3,368 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dev Repository | Código & Desarrollo</title>
-  <link rel="stylesheet" href="styles.css" />
+  <title>Jem Dev</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #0a0e0a;
+      color: #00ff88;
+      overflow-x: hidden;
+      position: relative;
+      min-height: 100vh;
+    }
+
+    /* Canvas para partículas binarias */
+    #particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    /* Contenedor principal */
+    .container {
+      position: relative;
+      z-index: 2;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    /* Botón flotante de WhatsApp */
+    .whatsapp-btn {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, #00ff88, #00cc66);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 20px rgba(0, 255, 136, 0.4);
+      z-index: 1000;
+      transition: all 0.3s ease;
+      color: #0a0e0a;
+      text-decoration: none;
+      animation: pulse 2s infinite;
+    }
+
+    .whatsapp-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 12px 30px rgba(0, 255, 136, 0.6);
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        box-shadow: 0 8px 20px rgba(0, 255, 136, 0.4);
+      }
+      50% {
+        box-shadow: 0 8px 30px rgba(0, 255, 136, 0.7);
+      }
+    }
+
+    /* Header */
+    header {
+      text-align: center;
+      margin-bottom: 60px;
+      animation: fadeInDown 1s ease;
+    }
+
+    header h1 {
+      font-size: 3.5rem;
+      background: linear-gradient(135deg, #00ff88, #00cc66);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 10px;
+      text-shadow: 0 0 30px rgba(0, 255, 136, 0.3);
+    }
+
+    header p {
+      font-size: 1.2rem;
+      color: #66ffaa;
+      opacity: 0.9;
+    }
+
+    /* Sección de Habilidades */
+    .skills-section {
+      margin-bottom: 60px;
+      animation: fadeInUp 1s ease;
+    }
+
+    .skills-section h2 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 40px;
+      color: #00ff88;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+    }
+
+    .skill-item {
+      background: rgba(0, 255, 136, 0.05);
+      border: 2px solid #00ff88;
+      border-radius: 15px;
+      padding: 30px;
+      text-align: center;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+    }
+
+    .skill-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0, 255, 136, 0.3);
+      background: rgba(0, 255, 136, 0.1);
+    }
+
+    .skill-icon {
+      font-size: 3rem;
+      display: block;
+      margin-bottom: 15px;
+    }
+
+    .skill-item h3 {
+      color: #00ff88;
+      margin-bottom: 10px;
+      font-size: 1.3rem;
+    }
+
+    .skill-item p {
+      color: #88ffbb;
+      font-size: 0.95rem;
+    }
+
+    /* Sección de Proyectos */
+    .projects-section {
+      margin-bottom: 60px;
+      animation: fadeInUp 1.2s ease;
+    }
+
+    .projects-section h2 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 40px;
+      color: #00ff88;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 30px;
+      margin-bottom: 50px;
+    }
+
+    .project-card {
+      background: rgba(0, 255, 136, 0.05);
+      border: 2px solid #00ff88;
+      border-radius: 15px;
+      padding: 25px;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      background: linear-gradient(45deg, #00ff88, #00cc66, #009944);
+      border-radius: 15px;
+      z-index: -1;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .project-card:hover::before {
+      opacity: 0.3;
+    }
+
+    .project-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0, 255, 136, 0.3);
+    }
+
+    .project-card h3 {
+      color: #00ff88;
+      margin-bottom: 15px;
+      font-size: 1.5rem;
+    }
+
+    .project-card p {
+      color: #88ffbb;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .tech-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 15px;
+    }
+
+    .tag {
+      background: rgba(0, 255, 136, 0.1);
+      border: 1px solid #00ff88;
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      color: #00ff88;
+    }
+
+    .project-link {
+      display: inline-block;
+      background: linear-gradient(135deg, #00ff88, #00cc66);
+      color: #0a0e0a;
+      padding: 10px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+
+    .project-link:hover {
+      transform: translateX(5px);
+      box-shadow: 0 5px 15px rgba(0, 255, 136, 0.4);
+    }
+
+    /* Sección de Estadísticas */
+    .stats-section {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 30px;
+      margin-bottom: 60px;
+      animation: fadeInUp 1.4s ease;
+    }
+
+    .stat-item {
+      text-align: center;
+      padding: 30px;
+      background: rgba(0, 255, 136, 0.05);
+      border: 2px solid #00ff88;
+      border-radius: 15px;
+      transition: all 0.3s ease;
+    }
+
+    .stat-item:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 25px rgba(0, 255, 136, 0.3);
+    }
+
+    .stat-number {
+      font-size: 3rem;
+      font-weight: bold;
+      color: #00ff88;
+      margin-bottom: 10px;
+    }
+
+    .stat-label {
+      font-size: 1rem;
+      color: #88ffbb;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      border-top: 2px solid rgba(0, 255, 136, 0.2);
+      margin-top: 60px;
+      animation: fadeInUp 1.6s ease;
+    }
+
+    footer p {
+      color: #66ffaa;
+      margin: 10px 0;
+    }
+
+    .footer-link {
+      color: #00ff88;
+      text-decoration: none;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+
+    .footer-link:hover {
+      color: #00cc66;
+      text-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
+    }
+
+    /* Animaciones */
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2.5rem;
+      }
+
+      .skills-grid,
+      .projects-grid,
+      .stats-section {
+        grid-template-columns: 1fr;
+      }
+
+      .whatsapp-btn {
+        bottom: 20px;
+        right: 20px;
+        width: 55px;
+        height: 55px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      header h1 {
+        font-size: 2rem;
+      }
+
+      header p {
+        font-size: 1rem;
+      }
+
+      .container {
+        padding: 20px 15px;
+      }
+    }
+  </style>
 </head>
 <body>
   <!-- Canvas para partículas binarias -->
@@ -31,7 +391,7 @@
         <div class="skill-item">
           <span class="skill-icon">🌐</span>
           <h3>Frontend</h3>
-          <p>HTML5, CSS3, JavaScript, React</p>
+          <p>HTML5, CSS3, JavaScript, React, Vue</p>
         </div>
         <div class="skill-item">
           <span class="skill-icon">⚙️</span>
@@ -69,7 +429,7 @@
 
         <div class="project-card">
           <h3>🛒 E-Commerce Platform</h3>
-          <p>Plataforma de comercio electrónico con carrito de compras, pasarela de pagos y gestión de inventario.</p>
+          <p>Plataforma de comercio electrónico con carrito de compras, pasarela de pagos y gestión de inventario completa.</p>
           <div class="tech-tags">
             <span class="tag">Vue.js</span>
             <span class="tag">Express</span>
@@ -79,8 +439,8 @@
         </div>
 
         <div class="project-card">
-          <h3>📱 App Móvil</h3>
-          <p>Aplicación móvil multiplataforma con funcionalidades offline y sincronización en la nube.</p>
+          <h3>📱 App Móvil Híbrida</h3>
+          <p>Aplicación móvil multiplataforma con funcionalidades offline y sincronización automática en la nube.</p>
           <div class="tech-tags">
             <span class="tag">React Native</span>
             <span class="tag">Firebase</span>
@@ -91,7 +451,7 @@
 
         <div class="project-card">
           <h3>🤖 Bot Automatización</h3>
-          <p>Bot inteligente para automatización de tareas y procesamiento de datos con machine learning.</p>
+          <p>Bot inteligente para automatización de tareas y procesamiento de datos con machine learning integrado.</p>
           <div class="tech-tags">
             <span class="tag">Python</span>
             <span class="tag">TensorFlow</span>
@@ -101,8 +461,8 @@
         </div>
 
         <div class="project-card">
-          <h3>🔐 Sistema de Autenticación</h3>
-          <p>Sistema robusto de autenticación con JWT, roles de usuario y verificación en dos pasos.</p>
+          <h3>🔐 Auth System Pro</h3>
+          <p>Sistema robusto de autenticación con JWT, roles de usuario y verificación en dos pasos para máxima seguridad.</p>
           <div class="tech-tags">
             <span class="tag">Node.js</span>
             <span class="tag">JWT</span>
@@ -113,7 +473,7 @@
 
         <div class="project-card">
           <h3>📊 Dashboard Analytics</h3>
-          <p>Panel de análisis de datos con gráficos interactivos y reportes en tiempo real para toma de decisiones.</p>
+          <p>Panel de análisis de datos con gráficos interactivos y reportes en tiempo real para toma de decisiones inteligentes.</p>
           <div class="tech-tags">
             <span class="tag">Angular</span>
             <span class="tag">D3.js</span>
@@ -147,11 +507,185 @@
 
     <!-- Footer -->
     <footer>
-      <p>💚 Hecho con pasión por la programación | 2025</p>
+      <p>Jem Dev | 2026</p>
       <p>¿Tienes un proyecto en mente? <a href="https://wa.me/573022407069" target="_blank" class="footer-link">¡Hablemos!</a></p>
     </footer>
   </div>
 
-  <script src="script.js"></script>
+  <script>
+    // Canvas y configuración de partículas binarias
+    const canvas = document.getElementById('particles');
+    const ctx = canvas.getContext('2d');
+
+    // Ajustar tamaño del canvas
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    // Clase para las partículas binarias
+    class BinaryParticle {
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.value = Math.random() > 0.5 ? '1' : '0';
+        this.speed = 0.5 + Math.random() * 1.5;
+        this.opacity = 0.3 + Math.random() * 0.4;
+        this.fontSize = 12 + Math.random() * 8;
+      }
+
+      update() {
+        this.y += this.speed;
+        
+        // Si la partícula sale del canvas, reiniciarla arriba
+        if (this.y > canvas.height) {
+          this.y = -20;
+          this.x = Math.random() * canvas.width;
+        }
+      }
+
+      draw() {
+        ctx.fillStyle = `rgba(0, 255, 136, ${this.opacity})`;
+        ctx.font = `${this.fontSize}px monospace`;
+        ctx.fillText(this.value, this.x, this.y);
+      }
+    }
+
+    // Crear array de partículas
+    const particles = [];
+    const particleCount = 80; // Número de partículas binarias
+
+    for (let i = 0; i < particleCount; i++) {
+      particles.push(new BinaryParticle());
+    }
+
+    // Animar partículas
+    function animateParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      particles.forEach(particle => {
+        particle.update();
+        particle.draw();
+      });
+      
+      requestAnimationFrame(animateParticles);
+    }
+
+    animateParticles();
+
+    // Animación de contadores en estadísticas
+    function animateCounter(element) {
+      const target = parseInt(element.getAttribute('data-target'));
+      const duration = 2000; // 2 segundos
+      const increment = target / (duration / 16); // 60fps
+      let current = 0;
+
+      const updateCounter = () => {
+        current += increment;
+        if (current < target) {
+          element.textContent = Math.floor(current).toLocaleString();
+          requestAnimationFrame(updateCounter);
+        } else {
+          element.textContent = target.toLocaleString();
+        }
+      };
+
+      updateCounter();
+    }
+
+    // Intersection Observer para animar contadores cuando sean visibles
+    const observerOptions = {
+      threshold: 0.5
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const counters = entry.target.querySelectorAll('.stat-number');
+          counters.forEach(counter => {
+            animateCounter(counter);
+          });
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    const statsSection = document.querySelector('.stats-section');
+    if (statsSection) {
+      observer.observe(statsSection);
+    }
+
+    // Efecto de hover en las tarjetas de proyecto
+    const projectCards = document.querySelectorAll('.project-card');
+
+    projectCards.forEach(card => {
+      card.addEventListener('mouseenter', function() {
+        this.style.borderColor = '#00cc66';
+      });
+      
+      card.addEventListener('mouseleave', function() {
+        this.style.borderColor = '#00ff88';
+      });
+    });
+
+    // Efecto parallax suave en el scroll
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const scrolled = window.pageYOffset;
+          const parallaxElements = document.querySelectorAll('.skill-item, .project-card');
+          
+          parallaxElements.forEach((element, index) => {
+            const speed = 0.5 + (index % 3) * 0.1;
+            element.style.transform = `translateY(${scrolled * speed * 0.02}px)`;
+          });
+          
+          ticking = false;
+        });
+        ticking = true;
+      }
+    });
+
+    // Smooth scroll para enlaces internos
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // Añadir efecto de escritura al título principal
+    const mainTitle = document.querySelector('header h1');
+    if (mainTitle) {
+      const originalText = mainTitle.textContent;
+      mainTitle.textContent = '';
+      let index = 0;
+
+      function typeWriter() {
+        if (index < originalText.length) {
+          mainTitle.textContent += originalText.charAt(index);
+          index++;
+          setTimeout(typeWriter, 100);
+        }
+      }
+
+      // Iniciar el efecto después de un pequeño delay
+      setTimeout(typeWriter, 500);
+    }
+
+    // Mostrar mensaje de bienvenida en consola
+    console.log('%c💻 Dev Repository', 'color: #00ff88; font-size: 24px; font-weight: bold;');
+    console.log('%c¡Bienvenido a mi portafolio de desarrollo!', 'color: #00cc66; font-size: 14px;');
+    console.log('%c¿Te gusta el código? Revisa el repositorio 🚀', 'color: #66ffaa; font-size: 12px;');
+  </script>
 </body>
 </html>
