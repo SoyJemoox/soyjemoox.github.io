@@ -1,37 +1,359 @@
 * {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
-  font-family: Arial, Helvetica, sans-serif;
 }
 
 body {
-  margin: 0;
-  background: linear-gradient(135deg, #667eea, #764ba2);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #0a0e0a;
+  color: #00ff88;
+  overflow-x: hidden;
+  position: relative;
   min-height: 100vh;
+}
+
+/* Canvas para partículas binarias */
+#particles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Contenedor principal */
+.container {
+  position: relative;
+  z-index: 2;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+/* Botón flotante de WhatsApp */
+.whatsapp-btn {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #00ff88, #00cc66);
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 0 8px 20px rgba(0, 255, 136, 0.4);
+  z-index: 1000;
+  transition: all 0.3s ease;
+  color: #0a0e0a;
+  text-decoration: none;
+  animation: pulse 2s infinite;
 }
 
-.container {
-  background: white;
-  padding: 2rem 3rem;
-  border-radius: 12px;
+.whatsapp-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 12px 30px rgba(0, 255, 136, 0.6);
+}
+
+@keyframes pulse {
+  0%, 100% {
+    box-shadow: 0 8px 20px rgba(0, 255, 136, 0.4);
+  }
+  50% {
+    box-shadow: 0 8px 30px rgba(0, 255, 136, 0.7);
+  }
+}
+
+/* Header */
+header {
   text-align: center;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  margin-bottom: 60px;
+  animation: fadeInDown 1s ease;
 }
 
-button {
-  margin-top: 1rem;
+header h1 {
+  font-size: 3.5rem;
+  background: linear-gradient(135deg, #00ff88, #00cc66);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 10px;
+  text-shadow: 0 0 30px rgba(0, 255, 136, 0.3);
+}
+
+header p {
+  font-size: 1.2rem;
+  color: #66ffaa;
+  opacity: 0.9;
+}
+
+/* Sección de Habilidades */
+.skills-section {
+  margin-bottom: 60px;
+  animation: fadeInUp 1s ease;
+}
+
+.skills-section h2 {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 40px;
+  color: #00ff88;
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+}
+
+.skill-item {
+  background: rgba(0, 255, 136, 0.05);
+  border: 2px solid #00ff88;
+  border-radius: 15px;
+  padding: 30px;
+  text-align: center;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.skill-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 255, 136, 0.3);
+  background: rgba(0, 255, 136, 0.1);
+}
+
+.skill-icon {
+  font-size: 3rem;
+  display: block;
+  margin-bottom: 15px;
+}
+
+.skill-item h3 {
+  color: #00ff88;
+  margin-bottom: 10px;
+  font-size: 1.3rem;
+}
+
+.skill-item p {
+  color: #88ffbb;
+  font-size: 0.95rem;
+}
+
+/* Sección de Proyectos */
+.projects-section {
+  margin-bottom: 60px;
+  animation: fadeInUp 1.2s ease;
+}
+
+.projects-section h2 {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 40px;
+  color: #00ff88;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 30px;
+  margin-bottom: 50px;
+}
+
+.project-card {
+  background: rgba(0, 255, 136, 0.05);
+  border: 2px solid #00ff88;
+  border-radius: 15px;
+  padding: 25px;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+}
+
+.project-card::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, #00ff88, #00cc66, #009944);
+  border-radius: 15px;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.project-card:hover::before {
+  opacity: 0.3;
+}
+
+.project-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0, 255, 136, 0.3);
+}
+
+.project-card h3 {
+  color: #00ff88;
+  margin-bottom: 15px;
+  font-size: 1.5rem;
+}
+
+.project-card p {
+  color: #88ffbb;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.tech-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 15px;
+}
+
+.tag {
+  background: rgba(0, 255, 136, 0.1);
+  border: 1px solid #00ff88;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  color: #00ff88;
+}
+
+.project-link {
+  display: inline-block;
+  background: linear-gradient(135deg, #00ff88, #00cc66);
+  color: #0a0e0a;
   padding: 10px 20px;
-  border: none;
-  background: #667eea;
-  color: white;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: all 0.3s ease;
 }
 
-button:hover {
-  background: #5a67d8;
+.project-link:hover {
+  transform: translateX(5px);
+  box-shadow: 0 5px 15px rgba(0, 255, 136, 0.4);
 }
 
+/* Sección de Estadísticas */
+.stats-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 30px;
+  margin-bottom: 60px;
+  animation: fadeInUp 1.4s ease;
+}
+
+.stat-item {
+  text-align: center;
+  padding: 30px;
+  background: rgba(0, 255, 136, 0.05);
+  border: 2px solid #00ff88;
+  border-radius: 15px;
+  transition: all 0.3s ease;
+}
+
+.stat-item:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 25px rgba(0, 255, 136, 0.3);
+}
+
+.stat-number {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #00ff88;
+  margin-bottom: 10px;
+}
+
+.stat-label {
+  font-size: 1rem;
+  color: #88ffbb;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 40px 20px;
+  border-top: 2px solid rgba(0, 255, 136, 0.2);
+  margin-top: 60px;
+  animation: fadeInUp 1.6s ease;
+}
+
+footer p {
+  color: #66ffaa;
+  margin: 10px 0;
+}
+
+.footer-link {
+  color: #00ff88;
+  text-decoration: none;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.footer-link:hover {
+  color: #00cc66;
+  text-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
+}
+
+/* Animaciones */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  header h1 {
+    font-size: 2.5rem;
+  }
+
+  .skills-grid,
+  .projects-grid,
+  .stats-section {
+    grid-template-columns: 1fr;
+  }
+
+  .whatsapp-btn {
+    bottom: 20px;
+    right: 20px;
+    width: 55px;
+    height: 55px;
+  }
+}
+
+@media (max-width: 480px) {
+  header h1 {
+    font-size: 2rem;
+  }
+
+  header p {
+    font-size: 1rem;
+  }
+
+  .container {
+    padding: 20px 15px;
+  }
+}
